@@ -35,7 +35,7 @@ prepare_build () {
 }
 
 # Create the Markdown file for the front cover and generate front cover with md-to-pdf
-create_front_cover () {
+# create_front_cover () {
 # Create the cover image with versioned image if exists else use the default with version number
 # VERSIONED_COVER_IMAGE_FILE=images/book-cover-$VERSION.jpg
 # if [[ -f "build/$VERSIONED_COVER_IMAGE_FILE" ]]; then
@@ -50,25 +50,25 @@ create_front_cover () {
 # md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/cover-$VERSION.md
 # Remove Blank pages from the cover page if any
 # remove_blank_pages build/cover-$VERSION.pdf
-}
+# }
 
 # Create the Markdown file for the second cover and generate second cover with md-to-pdf
-create_second_cover () {
+# create_second_cover () {
 # echo "<img src=\"images/second-cover.png\" />" > build/second-cover-$VERSION.md
 # Generate second cover with md-to-pdf
 # md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/second-cover-$VERSION.md
 # Remove Blank pages from the cover page if any
 # remove_blank_pages build/second-cover-$VERSION.pdf
-}
+# }
 
 # Create the Markdown file for the back cover and generate back cover with md-to-pdf
-create_back_cover () {
+# create_back_cover () {
 # echo "<img src=\"images/back-cover.png\"  />" > build/back-$VERSION.md
 # Generate back cover with md-to-pdf
 # md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/back-$VERSION.md
 # Remove Blank pages from the cover page if any
 # remove_blank_pages build/back-$VERSION.pdf
-}
+# }
 
 # Some PDF files has a blank page at the end due to newlines or box padding.
 # Remove those blank last pages if it is less than 13000 bytes in PDF files
@@ -364,9 +364,9 @@ clean_build
 
 prepare_build
 
-create_front_cover
-create_second_cover
-create_back_cover
+# create_front_cover
+# create_second_cover
+# create_back_cover
 
 # Preporcess the markdown to create the single document Markdown file
 ls build/md | sort -n | while read x; do preprocess_markdown_to_support_md_to_pdf $x  >>  build/wstg-doc-$VERSION.md ; done
