@@ -1,6 +1,6 @@
 # Table of Contents
 
-<!-- ## 0. [Foreword by Eoin Keary](0-Foreword/README.md)
+## 0. [Foreword by Eoin Keary](0-Foreword/README.md)
 
 ## 1. [Frontispiece](1-Frontispiece/)
 
@@ -326,4 +326,4 @@
 
 ## Appendix E. [History](6-Appendix/E-History.md)
 
-## Appendix F. [Leveraging Dev Tools](6-Appendix/F-Leveraging_Dev_Tools.md) -->
+## Appendix F. [Leveraging Dev Tools](6-Appendix/F-Leveraging_Dev_Tools.md)
