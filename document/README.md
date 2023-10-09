@@ -4,7 +4,7 @@
 
 ## 1. [Frontispiece](1-Frontispiece/)
 
-## 2. [Introduction](2-Introduction/)
+<!-- ## 2. [Introduction](2-Introduction/)
 
 ### 2.1 [The OWASP Testing Project](2-Introduction/README.md#The-OWASP-Testing-Project)
 
@@ -308,7 +308,7 @@
 
 ### 4.12 [API Testing](4-Web_Application_Security_Testing/12-API_Testing/README.md)
 
-#### 4.12.1 [Testing GraphQL](4-Web_Application_Security_Testing/12-API_Testing/01-Testing_GraphQL.md)
+#### 4.12.1 [Testing GraphQL](4-Web_Application_Security_Testing/12-API_Testing/01-Testing_GraphQL.md) -->
 
 ## 5. [Reporting](5-Reporting/README.md)
 
