@@ -17,10 +17,10 @@ prepare_build () {
     # Replace path separators "/" with ">>>" in .md files for better splitting in later stages
     find document -name "*.md" | while IFS= read -r FILE; do cp -v "$FILE" build/md/"${FILE//\//>>>}"; done
     find document -name "images"  -exec cp -r {}/. build/images/. ";"
-    # cp .github/pdf/assets/cover.jpg build/images/book-cover.jpg
-    # cp .github/pdf/assets/cover-$VERSION.jpg build/images/book-cover-$VERSION.jpg
-    # cp .github/pdf/assets/back-cover.png build/images/back-cover.png
-    # cp .github/pdf/assets/second-cover.png build/images/second-cover.png
+    cp .github/pdf/assets/cover.jpg build/images/book-cover.jpg
+    cp .github/pdf/assets/cover-$VERSION.jpg build/images/book-cover-$VERSION.jpg
+    cp .github/pdf/assets/back-cover.png build/images/back-cover.png
+    cp .github/pdf/assets/second-cover.png build/images/second-cover.png
 
     # Rename README files by prepending "0-0.0_" to keep them in the correct order
     find build/md -name "*README.md" | while IFS= read -r FILE; do mv -v "$FILE" "${FILE//README/0-0.0_README}"; done
@@ -35,40 +35,40 @@ prepare_build () {
 }
 
 # Create the Markdown file for the front cover and generate front cover with md-to-pdf
-# create_front_cover () {
+create_front_cover () {
 # Create the cover image with versioned image if exists else use the default with version number
-# VERSIONED_COVER_IMAGE_FILE=images/book-cover-$VERSION.jpg
-# if [[ -f "build/$VERSIONED_COVER_IMAGE_FILE" ]]; then
-#     echo "<img src=\"$VERSIONED_COVER_IMAGE_FILE\" />" > build/cover-$VERSION.md
-# else
-#     echo "<img src=\"images/book-cover.jpg\" />
-#         <h1 style=\"position:fixed; top:61.44%; right:37%; color: #ffffff !important;
-#                     border:none; font-weight: 500; font-size:33px;
-#                     font-style: normal;\" >$VERSION_NUMBER</h1>" > build/cover-$VERSION.md
-# fi
+VERSIONED_COVER_IMAGE_FILE=images/book-cover-$VERSION.jpg
+if [[ -f "build/$VERSIONED_COVER_IMAGE_FILE" ]]; then
+    echo "<img src=\"$VERSIONED_COVER_IMAGE_FILE\" />" > build/cover-$VERSION.md
+else
+    echo "<img src=\"images/book-cover.jpg\" />
+        <h1 style=\"position:fixed; top:61.44%; right:37%; color: #ffffff !important;
+                    border:none; font-weight: 500; font-size:33px;
+                    font-style: normal;\" >$VERSION_NUMBER</h1>" > build/cover-$VERSION.md
+fi
 # Generate front cover with md-to-pdf
-# md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/cover-$VERSION.md
+md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/cover-$VERSION.md
 # Remove Blank pages from the cover page if any
-# remove_blank_pages build/cover-$VERSION.pdf
-# }
+remove_blank_pages build/cover-$VERSION.pdf
+}
 
 # Create the Markdown file for the second cover and generate second cover with md-to-pdf
-# create_second_cover () {
-# echo "<img src=\"images/second-cover.png\" />" > build/second-cover-$VERSION.md
+create_second_cover () {
+echo "<img src=\"images/second-cover.png\" />" > build/second-cover-$VERSION.md
 # Generate second cover with md-to-pdf
-# md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/second-cover-$VERSION.md
+md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/second-cover-$VERSION.md
 # Remove Blank pages from the cover page if any
-# remove_blank_pages build/second-cover-$VERSION.pdf
-# }
+remove_blank_pages build/second-cover-$VERSION.pdf
+}
 
 # Create the Markdown file for the back cover and generate back cover with md-to-pdf
-# create_back_cover () {
-# echo "<img src=\"images/back-cover.png\"  />" > build/back-$VERSION.md
+create_back_cover () {
+echo "<img src=\"images/back-cover.png\"  />" > build/back-$VERSION.md
 # Generate back cover with md-to-pdf
-# md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/back-$VERSION.md
+md-to-pdf  --config-file .github/pdf/pdf-config.json  --pdf-options '{"margin":"0mm", "format": "A4"}' build/back-$VERSION.md
 # Remove Blank pages from the cover page if any
-# remove_blank_pages build/back-$VERSION.pdf
-# }
+remove_blank_pages build/back-$VERSION.pdf
+}
 
 # Some PDF files has a blank page at the end due to newlines or box padding.
 # Remove those blank last pages if it is less than 13000 bytes in PDF files
@@ -364,9 +364,9 @@ clean_build
 
 prepare_build
 
-# create_front_cover
-# create_second_cover
-# create_back_cover
+create_front_cover
+create_second_cover
+create_back_cover
 
 # Preporcess the markdown to create the single document Markdown file
 ls build/md | sort -n | while read x; do preprocess_markdown_to_support_md_to_pdf $x  >>  build/wstg-doc-$VERSION.md ; done
