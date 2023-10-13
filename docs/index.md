@@ -1,8 +1,8 @@
 # Table of Contents
 
-## 1. [Introduction](chapter-1-introduction/README.md)
+## 1. [Introduction](chapter-1/index.md)
 
-## 2. [Foreword](chapter-2-foreword/README.md)
+## 2. [Foreword](chapter-2/index.md)
 
 #Introduction to Lorem Ipsum
 
